@@ -15046,24 +15046,6 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># labelenconder = LabelEncoder()</span>
-<span class="c1"># type_encoded = labelenconder.fit_transform(df[&#39;Type&#39;])</span>
-<span class="c1"># df[&#39;Type&#39;] = type_encoded</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15705,33 +15687,7 @@ dtype: object</pre>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># numeric_pipeline = Pipeline(steps=[</span>
-<span class="c1">#   (&#39;median&#39;, SimpleImputer(strategy=&#39;median&#39;)),</span>
-<span class="c1">#   (&#39;scaling&#39;, StandardScaler())</span>
-<span class="c1"># ])</span>
-
-<span class="c1"># categorical_pipeline = Pipeline(steps=[</span>
-<span class="c1">#   (&#39;imputacionModa&#39;, SimpleImputer(strategy=&#39;most_frequent&#39;)),</span>
-<span class="c1"># ])</span>
-
-
-<span class="c1"># oneHot_pipeline = Pipeline(steps=[</span>
-<span class="c1">#   (&#39;oneHot&#39;, OneHotEncoder(drop=&#39;first&#39;))</span>
-<span class="c1"># ])</span>
-
-<span class="c1"># pipeline = ColumnTransformer(</span>
-<span class="c1">#   transformers=[</span>
-<span class="c1">#     (&#39;numeric&#39;, numeric_pipeline, numerical),</span>
-<span class="c1">#     (&#39;categoric&#39;, categorical_pipeline, categorical),</span>
-<span class="c1">#     (&#39;oneHotEncoder&#39;, oneHot_pipeline, categorical)</span>
-<span class="c1">#   ],</span>
-<span class="c1">#   remainder=&#39;passthrough&#39;</span>
-<span class="c1"># )</span>
-
-<span class="c1"># categoricas_numericas = [&#39;Category&#39;]</span>
-
-
-<span class="n">categoricas_numericas</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Paid&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">categoricas_numericas</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Paid&#39;</span><span class="p">]</span>
 <span class="n">numericas</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Page total likes&#39;</span><span class="p">,</span> <span class="s1">&#39;Post Month&#39;</span><span class="p">,</span> <span class="s1">&#39;Post Hour&#39;</span><span class="p">,</span> <span class="s1">&#39;Post Weekday&#39;</span><span class="p">]</span>
 <span class="n">onehot</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Category&#39;</span><span class="p">]</span>
 
@@ -15764,51 +15720,6 @@ dtype: object</pre>
     <span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="n">pipeline_onehot</span><span class="p">,</span> <span class="n">onehot</span><span class="p">)</span>
   <span class="p">]</span>
 <span class="p">)</span>
-
-<span class="c1"># ordinal = [&#39;Post Month&#39;, &#39;Post Hour&#39;, &#39;Post Weekday&#39;]</span>
-<span class="c1"># nominal = [&#39;Type&#39;, &#39;Paid&#39;, &#39;Category&#39;]</span>
-<span class="c1"># numerical = [&#39;Page total likes&#39;]</span>
-
-<span class="c1"># ordinal_pipeline = Pipeline([</span>
-<span class="c1">#     (&quot;imputer&quot;, SimpleImputer(strategy=&quot;most_frequent&quot;)),</span>
-<span class="c1">#     (&quot;encoder&quot;, OrdinalEncoder())</span>
-<span class="c1"># ])</span>
-
-<span class="c1"># nominal_pipeline = Pipeline([</span>
-<span class="c1">#     (&quot;imputer&quot;, SimpleImputer(strategy=&quot;most_frequent&quot;)),</span>
-<span class="c1">#     (&quot;encoder&quot;, OneHotEncoder(sparse=True, handle_unknown=&quot;ignore&quot;))</span>
-<span class="c1"># ])</span>
-
-<span class="c1"># numerical_pipeline = Pipeline([</span>
-<span class="c1">#     (&quot;imputer&quot;, SimpleImputer(strategy=&quot;mean&quot;)),</span>
-<span class="c1">#     (&quot;scaler&quot;, StandardScaler())</span>
-<span class="c1"># ])</span>
-
-<span class="c1"># pipeline = ColumnTransformer([</span>
-<span class="c1">#     (&quot;nominal_preprocessor&quot;, nominal_pipeline, nominal),</span>
-<span class="c1">#     (&quot;ordinal_preprocessor&quot;, ordinal_pipeline, ordinal),</span>
-<span class="c1">#     (&quot;numerical_preprocessor&quot;, numerical_pipeline, numerical)</span>
-<span class="c1"># ])</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># X_transformed = column_transformer.fit_transform(X_train)</span>
-<span class="c1"># X_transformednotLR = column_transformer_notLR.fit_transform(X_train)</span>
-<span class="c1"># X_transformed.shape</span>
-<span class="c1"># xtdf = pd.DataFrame(X_transformed)</span>
-<span class="c1"># xtdf.head()</span>
 </pre></div>
 
      </div>
@@ -15890,32 +15801,6 @@ Y Pruebas (100,)
 
 </div>
 
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># dummy_regressor = DummyRegressor(strategy=&#39;mean&#39;)</span>
-<span class="c1"># X_train_dummy_transformed = pipeline.fit_transform(X_train_dummy)</span>
-
-<span class="c1"># dummy_regressor.fit(X_train_dummy_transformed, y_train_dummy)</span>
-
-
-<span class="c1"># y_predicted_dummy = dummy_regressor.predict(X_test_dummy)</span>
-
-<span class="c1"># print(&quot;RMSE:\t %.2f&quot; % ( RMSE(y_test_dummy, y_predicted_dummy) ) )</span>
-<span class="c1"># print(&quot;MAE:\t %.2f&quot; % ( MAE(y_test_dummy, y_predicted_dummy) ) )</span>
-<span class="c1"># print(&quot;MAPE:\t %.2f&quot; % ( MAPE(y_test_dummy, y_predicted_dummy) ) )</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -16141,7 +16026,9 @@ Y Pruebas (100,)
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train_transformed</span><span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Revision de la dimensionalidad de los datos</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train_transformed</span><span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16316,7 +16203,8 @@ Y Pruebas (100,)
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_test_transformed</span><span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Revision de la dimensionalidad de los datos</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_test_transformed</span><span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16551,24 +16439,8 @@ Y Pruebas (100,)
       <span class="n">cv</span><span class="o">=</span><span class="n">repeated_k_fold</span><span class="p">,</span> 
       <span class="n">scoring</span><span class="o">=</span><span class="n">my_metrics</span><span class="p">,</span> 
       <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span>      
-  <span class="p">)</span>
+    <span class="p">)</span>
 
-  <span class="c1"># # pipe = make_pipeline((pipeline), (modelos[i]))</span>
-
-  <span class="c1"># pipe = Pipeline(steps=[(&#39;transformer&#39;, pipeline), (&#39;model&#39;, modelos[i])])</span>
-  <span class="c1"># model = TransformedTargetRegressor(</span>
-  <span class="c1">#     regressor=pipe,</span>
-  <span class="c1">#     func=y_transformer,</span>
-  <span class="c1">#     inverse_func=y_inverse_transformer</span>
-  <span class="c1"># )</span>
-  
-  <span class="c1"># scores = cross_validate(model,</span>
-  <span class="c1">#                          X_train,</span>
-  <span class="c1">#                          y_train,</span>
-  <span class="c1">#                          cv=repeated_k_fold,</span>
-  <span class="c1">#                          scoring=my_metrics,</span>
-  <span class="c1">#                          n_jobs=-1</span>
-  <span class="c1">#                          )</span>
     <span class="n">resultados</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%-20s</span><span class="se">\t</span><span class="s2">RMSE: </span><span class="si">%.4f</span><span class="se">\t</span><span class="s2">MAE: </span><span class="si">%.4f</span><span class="se">\t</span><span class="s2">MAPE: </span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span>
@@ -16576,7 +16448,7 @@ Y Pruebas (100,)
         <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s1">&#39;test_RMSE&#39;</span><span class="p">]),</span>
         <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s1">&#39;test_MAE&#39;</span><span class="p">]),</span>
         <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s1">&#39;test_MAPE&#39;</span><span class="p">])</span>
-      <span class="p">))</span>
+    <span class="p">))</span>
 </pre></div>
 
      </div>
@@ -16692,22 +16564,6 @@ class="
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
@@ -16975,22 +16831,6 @@ TEST: RMSE: 533.2159	 MAE: 281.5281	 MAPE: 88.1494
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
@@ -17001,17 +16841,6 @@ TEST: RMSE: 533.2159	 MAE: 281.5281	 MAPE: 88.1494
 <h1 id="Ejercicio-10."><strong>Ejercicio-10.</strong><a class="anchor-link" href="#Ejercicio-10.">&#182;</a></h1><p>Repite el ejercicio 8 y 9 para el modelo de bosque aleatorio para buscar sus mejores hiperparámetros (realiza la búsqueda con aquellos hiperparámetros que consideres más adecuados) y usando el conjunto de <strong>Prueba</strong>.</p>
 <p>Y realiza igualmente el análisis de importancia de factores con este modelo con un diagrama de barras.</p>
 
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="USAR-EL-GRID-SEARCH-X_test">USAR EL GRID SEARCH X_test<a class="anchor-link" href="#USAR-EL-GRID-SEARCH-X_test">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -17470,22 +17299,6 @@ TEST: RMSE: 532.5092	 MAE: 310.2518	 MAPE: 87.8504
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
